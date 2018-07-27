@@ -27,6 +27,7 @@ app.use((req, res, next) => {
     res.render('maintenance');
 });
  */
+
 app.use(express.static(__dirname + '/public'));
 // app.use(express.static('./public'));
  
@@ -53,6 +54,13 @@ app.get('/about', (req, res) => {
         time: new Date().toLocaleTimeString()
     });
 })
+
+// project route
+app.get('/projects', (req, res)=> {
+    res.render('projects', {
+        projectName: 'heroku project'
+    });
+});
 
 
 // Listen for requests
