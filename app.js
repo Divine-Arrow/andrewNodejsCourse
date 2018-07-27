@@ -3,6 +3,8 @@ const hbs = require('hbs');
 var fs = require('fs');
 var app = express();
 
+var port = process.env.PORT || 3000;
+
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
@@ -20,10 +22,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next)=> {
+// Maintenance mode
+/* app.use((req, res, next)=> {
     res.render('maintenance');
 });
-
+ */
 app.use(express.static(__dirname + '/public'));
 // app.use(express.static('./public'));
  
@@ -53,6 +56,6 @@ app.get('/about', (req, res) => {
 
 
 // Listen for requests
-app.listen(3000, () => {
-    console.log('App is started.!');
+app.listen(port, () => {
+    console.log(`server is up on port : ${port}`);
 });
